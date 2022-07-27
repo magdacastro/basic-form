@@ -14,6 +14,8 @@ Rodar `npm i`
 
 Manter executando em um shell o comando `ng serve`
 
+Abrir o navegador no endereço: `127.0.0.1:4200`
+
 <h2>Frontend - Opção 2 (Usando o express)</h2>
 
 Entrar no diretório *basic-form/server*
@@ -21,6 +23,8 @@ Entrar no diretório *basic-form/server*
 Rodar `npm i`
 
 Manter executando em um shell o comando `npx nodemon app.js`
+
+Abrir o navegador no endereço: `127.0.0.1:4200`
 
 <h2>Backend</h2>
 
