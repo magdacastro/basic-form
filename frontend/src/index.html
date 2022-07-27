@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>App</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.1/dist/flowbite.min.css" />
+    <script
+      src="https://kit.fontawesome.com/526f2e7bec.js"
+      crossorigin="anonymous"
+    ></script>
+
+
+    <script>
+      !(function () {
+        "use strict";
+        function e(e, t) {
+          for (var r = 0; r < t.length; r++) {
+            var n = t[r];
+            (n.enumerable = n.enumerable || !1),
+              (n.configurable = !0),
+              "value" in n && (n.writable = !0),
+              Object.defineProperty(e, n.key, n);
+          }
+        }
+        new ((function () {
+          function t() {
+            !(function (e, t) {
+              if (!(e instanceof t))
+                throw new TypeError("Cannot call a class as a function");
+            })(this, t),
+              (this.storageKey = "theme-preference"),
+              (this.theme = { value: this.getColorPreference() }),
+              this.reflectPreference(),
+              this.events();
+          }
+          var r, n;
+          return (
+            (r = t),
+            (n = [
+              {
+                key: "events",
+                value: function () {
+                  var e = this;
+                  (window.onload = function () {
+                    e.reflectPreference(),
+                      document
+                        .querySelectorAll(".js-dark-mode-trigger")
+                        .forEach(function (t) {
+                          t.addEventListener("click", function (t) {
+                            return e.onClick(t);
+                          });
+                        });
+                  }),
+                    window
+                      .matchMedia("(prefers-color-scheme: dark)")
+                      .addEventListener("change", function (t) {
+                        var r = t.matches;
+                        (e.theme.value = r ? "dark" : "light"),
+                          e.setPreference();
+                      });
+                },
+              },
+              {
+                key: "getColorPreference",
+                value: function () {
+                  return localStorage.getItem(this.storageKey)
+                    ? localStorage.getItem(this.storageKey)
+                    : window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "dark"
+                    : "light";
+                },
+              },
+              {
+                key: "setPreference",
+                value: function () {
+                  localStorage.setItem(this.storageKey, this.theme.value),
+                    this.reflectPreference();
+                },
+              },
+              {
+                key: "reflectPreference",
+                value: function () {
+                  var e = this;
+                  (document.firstElementChild.className = ""),
+                    document.firstElementChild.classList.add(this.theme.value),
+                    document
+                      .querySelectorAll(".js-dark-mode-trigger")
+                      .forEach(function (t) {
+                        null == t ||
+                          t.setAttribute("aria-label", e.theme.value);
+                      });
+                },
+              },
+              {
+                key: "onClick",
+                value: function (e) {
+                  e.preventDefault(),
+                    (this.theme.value =
+                      "light" === this.theme.value ? "dark" : "light"),
+                    this.setPreference();
+                },
+              },
+            ]) && e(r.prototype, n),
+            Object.defineProperty(r, "prototype", { writable: !1 }),
+            t
+          );
+        })())();
+      })();
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+    <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+<div class="register-form dark:bg-gray-900">
+  <lib-toastify-toast-container></lib-toastify-toast-container>
+  <div class="form-container">
+    <h1 class="mb-8 text-pink-600 text-xl uppercase font-bold dark:text-white">
+      Registre-se
+    </h1>
+
+    <form [formGroup]="dataForm" (submit)="onSubmit()" autocomplete="off">
+      <!-- Nome do usuário -->
+      <div class="relative z-0 mb-6 w-full group">
+        <input
+          type="text"
+          name="floating_name"
+          id="floating_name"
+          formControlName="user"
+          (keyup)="maskService.maskName(this)"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-pink-500 focus:outline-none focus:ring-0 focus:border-pink-600 peer"
+          placeholder=" "
+          required=""
+        />
+        <label
+          for="floating_name"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-pink-600 peer-focus:dark:text-pink-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Nome completo</label
+        >
+
+        <p
+          class="mt-2 text-xs text-red-600 dark:text-red-500"
+          *ngIf="dataForm.get('user')?.errors?.['required'] && dataForm.get('user')?.touched"
+        >
+          Oops! O campo é obrigatório
+        </p>
+        <p
+          class="mt-2 text-xs text-red-600 dark:text-red-500"
+          *ngIf="dataForm.get('user')?.errors?.['minlength']"
+        >
+          Por favor, insira o nome completo.
+        </p>
+      </div>
+
+      <!-- Telefone -->
+      <div class="relative z-0 mb-6 w-full group">
+        <input
+          type="text"
+          name="floating_tel"
+          id="floating_tel"
+          formControlName="tel"
+          (keyup)="maskService.maskTel(this)"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-pink-500 focus:outline-none focus:ring-0 focus:border-pink-600 peer"
+          placeholder=" "
+          required=""
+        />
+        <label
+          for="floating_tel"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-pink-600 peer-focus:dark:text-pink-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Telefone</label
+        >
+
+        <p
+          class="mt-2 text-xs text-red-600 dark:text-red-500"
+          *ngIf="dataForm.get('tel')?.errors?.['required'] && dataForm.get('tel')?.touched"
+        >
+          Oops! O campo é obrigatório
+        </p>
+      </div>
+
+      <!-- Email -->
+      <div class="relative z-0 mb-6 w-full group">
+        <input
+          type="email"
+          name="floating_email"
+          id="floating_email"
+          formControlName="email"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-pink-500 focus:outline-none focus:ring-0 focus:border-pink-600 peer"
+          placeholder=" "
+          required=""
+        />
+        <label
+          for="floating_email"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-pink-600 peer-focus:dark:text-pink-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Email</label
+        >
+
+        <p
+          class="mt-2 text-xs text-red-600 dark:text-red-500"
+          *ngIf="dataForm.get('email')?.errors?.['required'] && dataForm.get('email')?.touched"
+        >
+          Oops! O campo é obrigatório
+        </p>
+        <p
+          class="mt-2 text-xs text-red-600 dark:text-red-500"
+          *ngIf="dataForm.get('email')?.errors?.['email']"
+        >
+          Por favor, insira um e-mail válido.
+        </p>
+      </div>
+
+      <!-- Senha -->
+      <div class="relative z-0 mb-6 w-full group">
+        <input
+          type="password"
+          name="floating_password"
+          id="floating_password"
+          formControlName="password"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-pink-500 focus:outline-none focus:ring-0 focus:border-pink-600 peer"
+          placeholder=" "
+          required=""
+        />
+        <label
+          for="floating_password"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-pink-600 peer-focus:dark:text-pink-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Senha</label
+        >
+
+        <p
+          class="mt-2 text-xs text-red-600 dark:text-red-500"
+          *ngIf="dataForm.get('password')?.errors?.['required'] && dataForm.get('password')?.touched"
+        >
+          Oops! O campo é obrigatório
+        </p>
+        <p
+          class="mt-2 text-xs text-red-600 dark:text-red-500"
+          *ngIf="dataForm.get('password')?.errors?.['minlength']"
+        >
+          Por favor, insira no mínimo 8 caracteres.
+        </p>
+      </div>
+
+      <!-- Confirmação de senha -->
+      <div class="relative z-0 mb-6 w-full group">
+        <input
+          type="password"
+          name="floating_confirm_password"
+          id="floating_confirm_password"
+          formControlName="confirmPassword"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-pink-500 focus:outline-none focus:ring-0 focus:border-pink-600 peer"
+          placeholder=" "
+          required=""
+        />
+        <label
+          for="floating_confirm_password"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-pink-600 peer-focus:dark:text-pink-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Confirme sua senha</label
+        >
+
+        <p
+          class="mt-2 text-xs text-red-600 dark:text-red-500"
+          *ngIf="dataForm.get('confirmPassword')?.errors?.['required'] && dataForm.get('confirmPassword')?.touched"
+        >
+          Oops! O campo é obrigatório
+        </p>
+        <p
+          class="mt-2 text-xs text-red-600 dark:text-red-500"
+          *ngIf="dataForm.get('confirmPassword')?.errors?.['Mustmatch']"
+        >
+          As senhas não conferem.
+        </p>
+      </div>
+
+      <!-- Botão -->
+      <button
+        class="relative inline-flex items-center w-full justify-center p-0.5 mt-2 overflow-hidden text-md uppercase font-bold text-pink-600 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800"
+        [disabled]="dataForm.invalid"
+      >
+        <span
+          class="relative w-full px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+        >
+          Enviar
+        </span>
+      </button>
+    </form>
+  </div>
+</div>
